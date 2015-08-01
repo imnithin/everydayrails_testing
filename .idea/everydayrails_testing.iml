@@ -112,6 +112,24 @@
       <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="LAUNCH_JS" VALUE="false" />
       <method />
     </configuration>
+    <configuration default="false" name="Start Zeus Server: everydayrails_testing" type="ZeusRunConfigurationType" factoryName="Zeus Server" temporary="true">
+      <module name="everydayrails_testing" />
+      <ZEUS_RUN_CONFIGURATION NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
+      <ZEUS_RUN_CONFIGURATION NAME="WORK DIR" VALUE="$MODULE_DIR$" />
+      <ZEUS_RUN_CONFIGURATION NAME="SHOULD_USE_SDK" VALUE="false" />
+      <ZEUS_RUN_CONFIGURATION NAME="ALTERN_SDK_NAME" VALUE="" />
+      <ZEUS_RUN_CONFIGURATION NAME="myPassParentEnvs" VALUE="true" />
+      <envs />
+      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
+      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="rcov" />
+      <EXTENSION ID="org.jetbrains.plugins.ruby.motion.run.MotionSimulatorRunExtension" />
+      <ZEUS_RUN_CONFIG_SETTING NAME="ZEUS_COMMAND_NAME" VALUE="start" />
+      <ZEUS_RUN_CONFIG_SETTING NAME="ZEUS_COMMAND_ARGS" VALUE="" />
+      <RunnerSettings RunnerId="RubyRunner" />
+      <ConfigurationWrapper RunnerId="RubyRunner" />
+      <method />
+    </configuration>
   </component>
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
@@ -176,6 +194,7 @@
     <orderEntry type="library" scope="PROVIDED" name="rake (v10.4.2, RVM: ruby-1.9.3-p551) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rb-fsevent (v0.9.5, RVM: ruby-1.9.3-p551) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rb-inotify (v0.9.5, RVM: ruby-1.9.3-p551) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rb-readline (v0.5.3, RVM: ruby-1.9.3-p551) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rdoc (v3.12.2, RVM: ruby-1.9.3-p551) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ref (v1.0.5, RVM: ruby-1.9.3-p551) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rspec (v3.3.0, RVM: ruby-1.9.3-p551) [gem]" level="application" />
