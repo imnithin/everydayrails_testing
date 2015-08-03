@@ -24,12 +24,18 @@ class ContactsController < ApplicationController
   # GET /contacts/new
   # GET /contacts/new.json
   def new
-    @contact = Contact.new
+    # @contact = Contact.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @contact }
-    end
+    # respond_to do |format|
+    #   format.html # new.html.erb
+    #   format.json { render json: @contact }
+    # end
+
+    @contact = Contact.new 
+    %w(home office mobile).each do |phone|
+     @contact.phone_numbers.build(phone_type: phone) 
+   end
+
   end
 
   # GET /contacts/1/edit
