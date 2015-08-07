@@ -74,6 +74,56 @@ RSpec.describe ContactsController, :type => :controller do
       get :new
       expect(assigns(:contact).phone_numbers.map{ |p| p.phone_type }).to eq %w(home office mobile)
     end
+
   end
+
+  describe "POST #create" do
+
+    context "with valid attributes" do
+      it "creates a vaild contact" do
+        expect{
+          post :create, contact: FactoryGirl.attributes_for(:contact)
+        }.to change(Contact, :count).by(1)
+      end
+
+      it "redirects new contact" do
+          post :create, contact: FactoryGirl.attributes_for(:contact)
+          expect(response).to redirect_to Contact.last
+      end
+    end
+
+    context "with invalid attributes" do
+        it "does not save new contact" do
+        expect{
+          post :create, contact: FactoryGirl.attributes_for(:invalid_contact)
+        }.to_not change(Contact, :count)
+      end
+    end
+
+  end
+
+  describe "POST #create" do
+    context "valid contact" do
+      it "saves contact" do
+        expect{
+          post :create, contact: FactoryGirl.attributes_for(:contact)
+        }.to change(Contact,:count).by(1)
+      end
+
+      it "redirects new contact" do 
+        post :create, contact: FactoryGirl.attributes_for(:contact)
+        expect(contact).to redirect_to contact
+      end
+    end
+
+    context "invalid contact" do
+      it "do not save" do
+        expect{
+          post :create, contact: FactoryGirl.attributes_for(:invalid_contact)
+        }.not_to change(Contact, :count)
+      end
+    end
+  end
+
 
 end
