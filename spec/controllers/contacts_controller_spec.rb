@@ -42,7 +42,6 @@ RSpec.describe ContactsController, :type => :controller do
   end
 
   describe "GET #show" do
-
     it "renders the :show template" do
       contact = FactoryGirl.create(:contact)
       get :show, id: contact
@@ -60,11 +59,9 @@ RSpec.describe ContactsController, :type => :controller do
       get :show, id: contact
       expect(response).to be_success
     end
-
   end
 
   describe "GET #new" do
-
     it "assigns a new contact as @contact" do
       get :new
       expect(assigns(:contact)).to be_a_new(Contact)
@@ -74,11 +71,9 @@ RSpec.describe ContactsController, :type => :controller do
       get :new
       expect(assigns(:contact).phone_numbers.map{ |p| p.phone_type }).to eq %w(home office mobile)
     end
-
   end
 
   describe "POST #create" do
-
     context "with valid attributes" do
       it "creates a vaild contact" do
         expect{
@@ -99,31 +94,29 @@ RSpec.describe ContactsController, :type => :controller do
         }.to_not change(Contact, :count)
       end
     end
-
   end
 
-  describe "POST #create" do
-    context "valid contact" do
-      it "saves contact" do
-        expect{
-          post :create, contact: FactoryGirl.attributes_for(:contact)
-        }.to change(Contact,:count).by(1)
-      end
-
-      it "redirects new contact" do 
-        post :create, contact: FactoryGirl.attributes_for(:contact)
-        expect(contact).to redirect_to contact
-      end
+  describe "PUT #update" do
+    before :each do 
+      @contact = FactoryGirl.create(:contact, first_name: "ABD", last_name: "Villers")
     end
 
-    context "invalid contact" do
-      it "do not save" do
-        expect{
-          post :create, contact: FactoryGirl.attributes_for(:invalid_contact)
-        }.not_to change(Contact, :count)
+    context "valid attributes"do
+      it "locate contact without changes" do
+        put :update, {:id => @contact.to_param, :contact => FactoryGirl.attributes_for(:contact)}
+        # @contact is not equal to assigns(:contact), is this right way then?? - nithin thinks! Ohhh, Is it like `id` remains same when updating, other attrs can change isn't it.
+        expect(assigns(:contact)).to eq(@contact)
+      end
+
+      it "change attributes" do 
+        put :update, id: @contact.to_param, contact: FactoryGirl.attributes_for(:contact, first_name: "Kane", last_name: "Williamson")
+        @contact.reload
+        expect(@contact.first_name).to eq("Kane")
+        expect(@contact.last_name).to eq("Williamson")
       end
     end
   end
+
 
 
 end
