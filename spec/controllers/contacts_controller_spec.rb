@@ -101,7 +101,7 @@ RSpec.describe ContactsController, :type => :controller do
       @contact = FactoryGirl.create(:contact, first_name: "ABD", last_name: "Villers")
     end
 
-    context "valid attributes"do
+    context "valid attributes" do
       it "locate contact without changes" do
         put :update, {:id => @contact.to_param, :contact => FactoryGirl.attributes_for(:contact)}
         # @contact is not equal to assigns(:contact), is this right way then?? - nithin thinks! Ohhh, Is it like `id` remains same when updating, other attrs can change isn't it.
@@ -114,6 +114,30 @@ RSpec.describe ContactsController, :type => :controller do
         expect(@contact.first_name).to eq("Kane")
         expect(@contact.last_name).to eq("Williamson")
       end
+
+      it "directs to updated contact" do
+        put :update, id: @contact.to_param
+        expect(response).to redirect_to(@contact)
+      end
+    end
+
+    context "invalid attributes" do
+
+       it "locate contact without changes" do
+        put :update, {:id => @contact.to_param, :contact => FactoryGirl.attributes_for(:invalid_contact)}
+        expect(assigns(:contact)).to eq(@contact)
+      end
+
+      it "does not chnage @contact" do
+        put :update, id: @contact.to_param, contact: FactoryGirl.attributes_for(:contact, first_name: "Ce", last_name: nil)
+        expect(@contact.first_name).to eq("ABD")
+        # expect(@contact.last_name).to not_eq("ABD") # fix this
+      end
+
+      it "re-renders edit" do
+        put :update, id: @contact.to_param, contact: FactoryGirl.attributes_for("invalid_contact")
+        expect(response).to render_template("edit")
+      end 
     end
   end
 
