@@ -31,5 +31,6 @@ group :test do
   gem 'guard-rspec' 
   gem 'launchy' 
   gem 'quiet_assets'
+  gem 'database_cleaner'
 end 
 # - See more at: http://everydayrails.com/2012/03/12/testing-series-rspec-setup.html#sthash.HyyCHWAU.dpuf

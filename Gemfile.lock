@@ -45,6 +45,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.9.1.1)
+    database_cleaner (1.2.0)
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.5.2)
@@ -190,6 +191,7 @@ PLATFORMS
 DEPENDENCIES
   capybara
   coffee-rails (~> 3.2.1)
+  database_cleaner
   factory_girl_rails
   faker
   guard-rspec
